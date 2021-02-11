@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quotes_app/add-journal-button.dart';
+import 'package:quotes_app/login.dart';
 import 'package:quotes_app/quote-card.dart';
 
 class Home extends StatefulWidget {
@@ -12,19 +14,47 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  User? user;
+
+  @override
+  void initState() {
+    super.initState();
+
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      setState(() {
+        this.user = user;
+      });
+    });
+  }
+
+  void handleOnLoginPressed() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => LoginScreen()),
+    );
+  }
+
+  void handleOnLogoutPressed() async {
+    await FirebaseAuth.instance.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
         actions: [
-          IconButton(
-            icon: Icon(Icons.login),
-            tooltip: 'Login',
-            onPressed: () {
-              // setState(() { });
-            },
-          ),
+          user == null
+              ? IconButton(
+                  icon: Icon(Icons.login),
+                  tooltip: 'Login',
+                  onPressed: handleOnLoginPressed,
+                )
+              : IconButton(
+                  icon: Icon(Icons.logout),
+                  tooltip: 'Logout',
+                  onPressed: handleOnLogoutPressed,
+                ),
         ],
       ),
       body: ListView(
