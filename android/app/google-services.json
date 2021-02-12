@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "421495089628",
+    "project_id": "quotes-app-3a69d",
+    "storage_bucket": "quotes-app-3a69d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:421495089628:android:ec3a864b04ac793a43c719",
+        "android_client_info": {
+          "package_name": "dev.lorenzopieri.quotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "421495089628-39r1acp164n07r9073dlk0q57il8f5t9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGpagAxKL5R0-x5d8WhZ8gW24l3DH84sM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "421495089628-39r1acp164n07r9073dlk0q57il8f5t9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "421495089628-bd0581j4fd3n5r3m6b8u6gb73qfv6pgd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "dev.lorenzopieri.quotes"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
