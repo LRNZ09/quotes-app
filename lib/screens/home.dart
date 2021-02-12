@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:quotes_app/add-journal-button.dart';
-import 'package:quotes_app/journal-list.dart';
-import 'package:quotes_app/login.dart';
-import 'package:quotes_app/quote-card.dart';
+import 'package:quotes_app/widgets/add_journal_button.dart';
+import 'package:quotes_app/widgets/journal_list.dart';
+import 'package:quotes_app/screens/login.dart';
+import 'package:quotes_app/widgets/quote_card.dart';
 
 class Home extends StatefulWidget {
-  Home({Key? key, required this.title}) : super(key: key);
+  Home({Key key, this.title}) : super(key: key);
 
   final String title;
 
@@ -15,13 +15,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  User? user;
+  User user;
 
   @override
   void initState() {
     super.initState();
 
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+    FirebaseAuth.instance.authStateChanges().listen((User user) {
       setState(() {
         this.user = user;
       });
@@ -59,7 +59,6 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: ListView(
-        padding: const EdgeInsets.all(8),
         children: <Widget>[
           QuoteCard(),
           SizedBox(height: 8),

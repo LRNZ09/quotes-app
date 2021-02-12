@@ -1,5 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:quotes_app/screens/journal.dart';
 
 class AddJournalButton extends StatefulWidget {
   @override
@@ -7,17 +7,18 @@ class AddJournalButton extends StatefulWidget {
 }
 
 class _AddJournalButtonState extends State<AddJournalButton> {
-  void handleOnPressed() async {
-    FirebaseFirestore.instance
-        .collection('journals')
-        .add({'mood': 'neutral', 'text': 'bar', 'title': 'foo'});
+  void handleOnPressed() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => JournalScreen()),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: handleOnPressed,
-      tooltip: 'Add quote',
+      tooltip: 'Add journal',
       child: Icon(Icons.add),
     );
   }
