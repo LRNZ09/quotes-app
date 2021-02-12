@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:quotes_app/screens/journal.dart';
@@ -14,6 +15,7 @@ class JournalList extends StatelessWidget {
   Widget build(BuildContext context) {
     var journalsStream = FirebaseFirestore.instance
         .collection('journals')
+        .where('userId', isEqualTo: FirebaseAuth.instance.currentUser.uid)
         .orderBy('date', descending: true)
         .snapshots();
 
