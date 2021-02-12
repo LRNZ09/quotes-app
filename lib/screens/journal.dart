@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class JournalScreen extends StatefulWidget {
-  JournalScreen({Key key, this.id, this.mood, this.text, this.title})
+  JournalScreen({Key key, this.id, this.mood, this.text = '', this.title = ''})
       : super(key: key);
 
   final String id;
@@ -17,8 +17,8 @@ class JournalScreen extends StatefulWidget {
 
 class _JournalScreenState extends State<JournalScreen> {
   String mood;
-  var text = '';
-  var title = '';
+  String text;
+  String title;
 
   @override
   void initState() {
@@ -31,6 +31,7 @@ class _JournalScreenState extends State<JournalScreen> {
 
   void handleOnAddPressed() async {
     var journals = FirebaseFirestore.instance.collection('journals');
+
     try {
       if (widget.id?.isNotEmpty ?? false)
         await journals.doc(widget.id).update({
@@ -110,6 +111,8 @@ class _JournalScreenState extends State<JournalScreen> {
             decoration: InputDecoration(
               labelText: 'Text',
             ),
+            keyboardType: TextInputType.multiline,
+            maxLines: null,
             onChanged: handleOnTextChanged,
           ),
           SizedBox(height: 16),
