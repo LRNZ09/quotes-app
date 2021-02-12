@@ -1,17 +1,14 @@
 import 'dart:convert';
-import 'dart:io';
+import 'package:http/http.dart' as http;
 
 import 'package:quotes_app/quote.dart';
 
 Future<Quote> fetchQuote() async {
-  final client = new HttpClient();
-  final request =
-      await client.getUrl(Uri.parse('https://zenquotes.io/api/today'));
-  final response = await request.close();
+  final response = await http.get(Uri.parse('https://zenquotes.io/api/today'));
 
   if (response.statusCode == 200) {
-    final body = await response.transform(utf8.decoder).join();
-    return Quote.fromJson(jsonDecode(body)[0]);
+    var quoteMap = jsonDecode(response.body)[0];
+    return Quote.fromJson(quoteMap);
   } else {
     throw Exception('Failed to load quote');
   }

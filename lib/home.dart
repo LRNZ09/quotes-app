@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quotes_app/add-journal-button.dart';
+import 'package:quotes_app/journal-list.dart';
 import 'package:quotes_app/login.dart';
 import 'package:quotes_app/quote-card.dart';
 
@@ -64,6 +65,7 @@ class _HomeState extends State<Home> {
           SizedBox(height: 8),
           Divider(),
           SizedBox(height: 8),
+          JournalList(),
         ],
       ),
       floatingActionButton: AddJournalButton(),

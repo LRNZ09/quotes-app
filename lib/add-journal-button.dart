@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class AddJournalButton extends StatefulWidget {
@@ -6,7 +7,11 @@ class AddJournalButton extends StatefulWidget {
 }
 
 class _AddJournalButtonState extends State<AddJournalButton> {
-  void handleOnPressed() {}
+  void handleOnPressed() async {
+    FirebaseFirestore.instance
+        .collection('journals')
+        .add({'mood': 'neutral', 'text': 'bar', 'title': 'foo'});
+  }
 
   @override
   Widget build(BuildContext context) {
