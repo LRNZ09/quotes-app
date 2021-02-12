@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:quotes_app/widgets/add_journal_button.dart';
 import 'package:quotes_app/widgets/journal_list.dart';
 import 'package:quotes_app/screens/login.dart';
@@ -64,10 +65,20 @@ class _HomeState extends State<Home> {
           SizedBox(height: 8),
           Divider(),
           SizedBox(height: 8),
-          JournalList(),
+          user == null
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Center(
+                    child: Text(
+                      'Create an account or login from the button at the top right to add your journals',
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                )
+              : JournalList(),
         ],
       ),
-      floatingActionButton: AddJournalButton(),
+      floatingActionButton: user == null ? null : AddJournalButton(),
     );
   }
 }
